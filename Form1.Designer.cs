@@ -40,6 +40,8 @@
             lblIdFuncionario = new Label();
             btnPesquisar = new Button();
             btnLimpar = new Button();
+            btnAtualizar = new Button();
+            btnDeletar = new Button();
             SuspendLayout();
             // 
             // lblNome
@@ -143,7 +145,7 @@
             lblIdFuncionario.Name = "lblIdFuncionario";
             lblIdFuncionario.Size = new Size(109, 21);
             lblIdFuncionario.TabIndex = 9;
-            lblIdFuncionario.Text = "Id Funcionario";
+            lblIdFuncionario.Text = "Funcionário Id";
             // 
             // btnPesquisar
             // 
@@ -169,11 +171,37 @@
             btnLimpar.UseVisualStyleBackColor = true;
             btnLimpar.Click += btnLimpar_Click;
             // 
+            // btnAtualizar
+            // 
+            btnAtualizar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAtualizar.Location = new Point(446, 326);
+            btnAtualizar.Margin = new Padding(4);
+            btnAtualizar.Name = "btnAtualizar";
+            btnAtualizar.Size = new Size(85, 60);
+            btnAtualizar.TabIndex = 11;
+            btnAtualizar.Text = "Atualizar";
+            btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.Click += btnAtualizar_Click;
+            // 
+            // btnDeletar
+            // 
+            btnDeletar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeletar.Location = new Point(557, 326);
+            btnDeletar.Margin = new Padding(4);
+            btnDeletar.Name = "btnDeletar";
+            btnDeletar.Size = new Size(85, 60);
+            btnDeletar.TabIndex = 12;
+            btnDeletar.Text = "Deletar";
+            btnDeletar.UseVisualStyleBackColor = true;
+            btnDeletar.Click += btnDeletar_Click;
+            // 
             // FormularioPrincipal
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(698, 417);
+            Controls.Add(btnDeletar);
+            Controls.Add(btnAtualizar);
             Controls.Add(btnLimpar);
             Controls.Add(btnPesquisar);
             Controls.Add(lblIdFuncionario);
@@ -191,7 +219,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormularioPrincipal";
-            Text = "CADASTRO DE FUNCIONÁRIOS";
+            Text = "Funcionários";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -210,5 +238,7 @@
         private Label lblIdFuncionario;
         private Button btnPesquisar;
         private Button btnLimpar;
+        private Button btnAtualizar;
+        private Button btnDeletar;
     }
 }

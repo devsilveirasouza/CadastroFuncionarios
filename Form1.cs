@@ -110,7 +110,7 @@ namespace CadastroFuncionarios
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao realizar a pesquisa no banco de dados");
+                MessageBox.Show("Erro ao realizar a pesquisa no banco de dados" + ex.Message);
             }
         }
 
@@ -121,6 +121,101 @@ namespace CadastroFuncionarios
             txtbCpf.Clear();
             txtbEndereco.Clear();
             lblIdFuncionario.Text = "";
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!txtbNome.Text.Equals("") && !txtbEmail.Text.Equals("") && !txtbCpf.Text.Equals("") && !txtbEndereco.Text.Equals(""))
+                {
+                    CadastroFuncionarios cadFuncionarios = new CadastroFuncionarios();
+                    cadFuncionarios.Id = int.Parse(lblIdFuncionario.Text);
+                    cadFuncionarios.Email = txtbEmail.Text;
+                    cadFuncionarios.Endereco = txtbEndereco.Text;
+
+                    if (cadFuncionarios.atualizarFuncionario())
+                    {
+                        MessageBox.Show("Os dados do funcionário foram atualizados com sucesso!");
+                        txtbNome.Clear();
+                        txtbEmail.Clear();
+                        txtbCpf.Clear();
+                        txtbEndereco.Clear();
+                        lblIdFuncionario.Text = "";
+                        txtbCpf.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possível atualizar os dados");
+                        txtbNome.Clear();
+                        txtbEmail.Clear();
+                        txtbCpf.Clear();
+                        txtbEndereco.Clear();
+                        lblIdFuncionario.Text = "";
+                        txtbCpf.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Favor localizar o funcionário que deseja atualizar as informações");
+                    txtbNome.Clear();
+                    txtbEmail.Clear();
+                    txtbCpf.Clear();
+                    txtbEndereco.Clear();
+                    lblIdFuncionario.Text = "";
+                    txtbCpf.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao atualizar dados do funcionário: " + ex.Message);
+            }
+        }
+        // MÉTODO PARA DELETAR REGISTRO DO BANCO DE DADOS
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(!txtbNome.Text.Equals("") && !txtbEmail.Text.Equals("") && !txtbCpf.Text.Equals("") && !txtbEndereco.Text.Equals(""))
+                {
+                    CadastroFuncionarios cadFuncionarios = new CadastroFuncionarios();
+                    cadFuncionarios.Id = int.Parse(lblIdFuncionario.Text);
+
+                    if (cadFuncionarios.deletararFuncionario())
+                    {
+                        MessageBox.Show("O funcionário foi excluído com sucesso!");
+                        txtbNome.Clear();
+                        txtbEmail.Clear();
+                        txtbCpf.Clear();
+                        txtbEndereco.Clear();
+                        lblIdFuncionario.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possível excluir funcionário");
+                        txtbNome.Clear();
+                        txtbEmail.Clear();
+                        txtbCpf.Clear();
+                        txtbEndereco.Clear();
+                        lblIdFuncionario.Text = "";
+                        txtbCpf.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Favor pesquisar qual funcionário deseja excluir");
+                    txtbNome.Clear();
+                    txtbEmail.Clear();
+                    txtbCpf.Clear();
+                    txtbEndereco.Clear();
+                    lblIdFuncionario.Text = "";
+                    txtbCpf.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao excluir funcionário: " + ex.Message);
+            }
         }
     }
 }

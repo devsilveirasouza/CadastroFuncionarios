@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySql.Data.Types;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,48 @@ namespace CadastroFuncionarios
                 MessageBox.Show("Erro no banco de dados - método localizarFuncionario: " + ex.Message);
                 return null;// SE NÃO ENCONTRAR NADA RETORNA NULO
             }            
+        }
+        // MÉTODO PARA ATUALIZAR REGISTRO NO BANCO DE DADOS
+        public bool atualizarFuncionario()
+        {
+            try
+            {
+                MySqlConnection MysqlConexaoBanco = new MySqlConnection(ConexaoBanco.banco);
+                MysqlConexaoBanco.Open();
+
+                string update = $"update funcionarios set email = '{Email}', endereco = '{Endereco}' where id = '{Id}';";
+                MySqlCommand comandosql = MysqlConexaoBanco.CreateCommand();
+                comandosql.CommandText = update;
+
+                comandosql.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no banco de dados - método atualizarFuncionario: " + ex.Message);
+                return false;
+            }
+        }
+        // DELETAR REGISTRO DO BANCO DE DADOS
+        public bool deletararFuncionario()
+        {
+            try
+            {
+                MySqlConnection MysqlConexaoBanco = new MySqlConnection(ConexaoBanco.banco);
+                MysqlConexaoBanco.Open();
+
+                string delete = $"delete from funcionarios where id = '{Id}';";
+                MySqlCommand comandosql = MysqlConexaoBanco.CreateCommand();
+                comandosql.CommandText = delete;
+
+                comandosql.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro no banco de dados - método deletarFuncionario: " + ex.Message);
+                return false;
+            }
         }
     }
 }
